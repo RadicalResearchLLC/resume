@@ -1,0 +1,92 @@
+---
+name: Michael
+surname: McCarthy
+position: "Founder and Chief Scientist"
+address: "Radical Research LLC, Riverside, CA"
+#profilepic: "./images/JTree_mike2.png"
+www: radicalresearch.llc
+email: "MikeM@radicalresearch.llc"
+github: RadicalResearchLLC
+linkedin: mike-mccarthy-7966964
+orcid: 0000-0003-4222-681X
+date: "`r format(Sys.time(), '%B %Y')`"
+output: vitae::awesomecv
+headcolor: ff3c00
+bibliography: pubsTox.json
+csl: acs.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+packages <- c('vitae', 'magrittr', 'tibble', 'glue', 'dplyr', 'stringr', 'lubridate')
+
+require(xfun)
+xfun::pkg_attach2(packages, message = FALSE)
+
+source('CV_lists.R')
+```
+
+# Summary
+
+Founder and Chief Scientist at Radical Research LLC, an environmental consulting firm. I have over 20 years of experience as an atmospheric scientist, with most of my career spent at Sonoma Technology, Inc. My areas of scientific interest include data science, visualization, quality assurance, risk assessment, source apportionment, network evaluation, and monitoring study design. I have extensive experience with speciated trace chemicals in the atmosphere, including hazardous air pollutants, volatile organic compounds, speciated components of particulate matter, and PFAS (polyfluoroalkyl substances).  
+
+# Experience
+
+```{r Work}
+work %>% 
+  #filter(resume = '1') %>%
+  detailed_entries(with = title,
+                   what = organization,
+                   when = glue::glue("{startMonth} {startYear} -- {endMonth} {endYear}",.na = ''),
+                   where = where
+  )
+
+
+```
+
+# Education
+
+```{r Education}
+
+edu %>% 
+  filter(resume == 1) %>%
+  detailed_entries(
+    with = Degree, 
+    what = Institution, 
+    when = glue::glue("{startMonth} {startYear} -- {endMonth} {endYear}",.na = ''),
+    where = Where,
+    why = detail)
+
+
+```
+
+# Skills
+
+```{r Skills}
+
+skills %>% 
+  detailed_entries(
+    with = area, 
+    what = skills)
+
+```
+\pagebreak
+
+# Publications
+
+Relevant peer-reviewed journal articles for this call.
+
+---
+nocite: |
+  @mccarthyAssessmentMobileSource2021,
+  @mccarthyCharacterizationChronicRisk2009,
+  @brownAssessmentAmbientAir2020,
+  @mukherjeeMeasuringSpatialTemporal2019,
+  @mccarthyFiltrationEffectivenessHVAC2013,
+  @mccarthySourceApportionmentVolatile2013,
+  @mccarthyCharacterizationChronicRisk2009,
+  @mccarthyTemporalVariabilitySelected2007,
+  @mccarthyBackgroundConcentrations182006,
+  @kenskiLessonsLearnedAir2005
+---
